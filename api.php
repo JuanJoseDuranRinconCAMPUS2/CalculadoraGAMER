@@ -1,11 +1,12 @@
 <?php
     session_start();
-    if (!isset($_SESSION['Numeros'])) {
-        $_SESSION['Numeros'] = '';
-        $_SESSION['valor1'] = '';
-        $_SESSION['valor2'] = '';
 
-    };
+    $seccionVariables = ['Numeros', 'valor1', 'valor2', 'Operacion'];
+    foreach ($seccionVariables as $valor) {
+        if (!isset($_SESSION[$valor])) {
+            $_SESSION[$valor] = '';
+        }
+    }
 
     $num1 = '';
 
@@ -18,28 +19,38 @@
         }
         if (isset($_POST["operacion"])) {
             $_SESSION['valor1'] = $_SESSION['Numeros'];
-            $operation = $_POST["operacion"];
+            $_SESSION['Operacion'] = $_POST["operacion"];
             $_SESSION['Numeros'] = '';
         }
         if(isset($_POST["Resultado"])){
             $_SESSION['valor2'] = $_SESSION['Numeros'];
             $_SESSION['Numeros'] = '';
-
-            
+            $num1 = $_SESSION['valor1'];
+            $num2 = $_SESSION['valor2'];
+            $operacion = $_SESSION['Operacion'];
+            $_SESSION['Numeros'] = match($operacion) {
+                "+" =>  strval($num1 + $num2),
+                "-" =>  strval($num1 - $num2),
+                "*" =>  strval($num1 * $num2),
+                "/" =>  strval($num2 == "0" ? $num1 : $num1 / $num2),
+                default => "Unknown status.",
+            };
         }
     };
     if(isset($_POST["borrar"])){
-        $_SESSION['Numeros'] = '';
-        $_SESSION['valor1'] = '';
-        $_SESSION['valor2'] = '';
+        foreach ($seccionVariables as $valor) {
+            $_SESSION[$valor] = '';
+        }
     }
     
-    echo "data ingresada <br>";
-    var_dump ($_SESSION['Numeros']);
-    echo "<br> valor 1 <br>";
-    var_dump ($_SESSION['valor1']);
-    echo "<br> valor 2 <br>";
-    var_dump ($_SESSION['valor2']);
+    // echo "data ingresada <br>";
+    // var_dump ($_SESSION['Numeros']);
+    // echo "<br> valor 1 <br>";
+    // var_dump ($_SESSION['valor1']);
+    // echo "<br> valor 2 <br>";
+    // var_dump ($_SESSION['valor2']);
+    // echo "<br> operacion <br>";
+    // var_dump ($_SESSION['Operacion']);
 ?>
 
 <!DOCTYPE html>
