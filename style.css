@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+
+body{
+  background: #030321;
+  font-family: Arial;
+}
+
+.container {
+  display: flex;
+/*   border:1px solid red; */
+  height: 100%;
+  align-items: center;
+}
+
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 960px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+	stroke: #4D163D;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: #840037;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: #BD0034;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: #BD0034;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: #FDB731;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+#calculator {
+    width: 45%;
+    height: 80%;
+    background: #171717;
+    transition: 1s ease-in-out;
+    clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    position: block;
+    margin: auto;
+    flex-direction: column;
+}
+
+input{
+    font-size: 25px;
+    padding: 10px;
+    text-align: right;
+    margin-bottom: 15px;
+    
+}
+
+.botonCal{
+    color: greenyellow;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60px;
+    height: 50px;
+    position: relative;
+    font-size: 25px;
+    font-style: bold;
+    text-align: center;
+    cursor: pointer;
+    background: transparent;
+    margin-bottom: 15px;
+}
+
+.botonCal:hover{
+    background-color: slategray;
+}
