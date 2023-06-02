@@ -32,15 +32,29 @@
                 "-" =>  strval($num1 - $num2),
                 "*" =>  strval($num1 * $num2),
                 "/" =>  strval($num2 == "0" ? $num1 : $num1 / $num2),
-                default => "Unknown status.",
+                "1/x" =>  strval($num1 == "0" ? $num1 : "1" / $num1),
+                "x^2" =>  strval($num1 ** "2"),
+                "√x" =>  strval(sqrt($num1)),
+                "%" =>  strval(sqrt($num2 == "0" ? $num1 : $num1 % $num2)),
+                default => $num1,
             };
+        }
+        if (isset($_POST["N/P"])) {
+            if (substr($_SESSION['Numeros'], 0, 1) !== '-') {
+                $_SESSION['Numeros'] = '-' . $_SESSION['Numeros'];
+            } else {
+                $_SESSION['Numeros'] = substr($_SESSION['Numeros'], 1);
+            }
         }
     };
     if(isset($_POST["borrar"])){
         foreach ($seccionVariables as $valor) {
             $_SESSION[$valor] = '';
         }
-    }
+    };
+    if(isset($_POST["borrarUno"])){
+        $_SESSION['Numeros'] = substr($_SESSION['Numeros'], 0, -1);  
+    };
     
     // echo "data ingresada <br>";
     // var_dump ($_SESSION['Numeros']);
@@ -59,7 +73,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Envio de Datos</title>
+    <title>Calculadora</title>
 </head>
 <body>
     <div class="container">
@@ -86,7 +100,7 @@
                 <td><button class="botonCal" type="submit" name="operacion" value="%">  % </button></td>
                 <td><button class="botonCal" type="submit" name="borrar" value="C">  C </button></td>
                 <td><button class="botonCal" type="submit" name="borrar" value="CE">  CE </button></td>
-                <td><button class="botonCal" type="submit" name="borrarUno" value="">  <- </button></td>
+                <td><button class="botonCal" type="submit" name="borrarUno" value="borrarUno">  <- </button></td>
             </tr>
             <tr>
                 <td><button class="botonCal" type="submit" name="operacion" value="1/x"> 1/x </button></td>
