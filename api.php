@@ -26,18 +26,18 @@
         if(isset($_POST["Resultado"])){
             $_SESSION['valor2'] = $_SESSION['Numeros'];
             $_SESSION['Numeros'] = '';
-            $num1 = $_SESSION['valor1'];
-            $num2 = $_SESSION['valor2'];
+            $num1 = isset($_SESSION['valor1']) ? $_SESSION['valor1'] : '0';
+            $num2 = isset($_SESSION['valor2']) ? $_SESSION['valor2'] : '0';
             $operacion = $_SESSION['Operacion'];
             $_SESSION['Numeros'] = match($operacion) {
                 "+" =>  strval($num1 + $num2),
                 "-" =>  strval($num1 - $num2),
                 "*" =>  strval($num1 * $num2),
-                "/" =>  strval($num2 == "0" ? $num1 : $num1 / $num2),
-                "1/x" =>  strval($num1 == "0" ? $num1 : "1" / $num1),
+                "/" =>  strval($num2 == "0" ? "No se puede dividir entre cero" : $num1 / $num2),
+                "1/x" =>  strval($num1 == "0" ? "No se puede dividir entre cero" : "1" / $num1),
                 "x^2" =>  strval($num1 ** "2"),
                 "√x" =>  strval(sqrt($num1)),
-                "%" =>  strval(sqrt($num2 == "0" ? $num1 : $num1 % $num2)),
+                "%" =>  strval(sqrt($num2 == "0" ? "No se puede dividir entre cero" : $num1 % $num2)),
                 default => $num1,
             };
         }
