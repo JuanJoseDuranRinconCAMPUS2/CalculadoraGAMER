@@ -14,12 +14,14 @@
         if (isset($_POST["numero"])) {
             $numero = $_POST["numero"];
             $_SESSION['Numeros'] .= $numero;
-        
+            if (substr($_SESSION['Numeros'], 0, 1) == $_SESSION['Operacion']) {
+                $_SESSION['Numeros'] = substr($_SESSION['Numeros'], 1);
+            }
         }
         if (isset($_POST["operacion"])) {
             $_SESSION['valor1'] = $_SESSION['Numeros'];
             $_SESSION['Operacion'] = $_POST["operacion"];
-            $_SESSION['Numeros'] = '';
+            $_SESSION['Numeros'] =  $_SESSION['Operacion'];
         }
         if(isset($_POST["Resultado"])){
             $_SESSION['valor2'] = $_SESSION['Numeros'];
