@@ -18,12 +18,12 @@
                 $_SESSION['Numeros'] = substr($_SESSION['Numeros'], 1);
             }
         }
-        if (isset($_POST["operacion"])) {
+        if (isset($_POST["operacion"]) && is_numeric($_SESSION['Numeros'])) {
             $_SESSION['valor1'] = $_SESSION['Numeros'];
             $_SESSION['Operacion'] = $_POST["operacion"];
             $_SESSION['Numeros'] =  $_SESSION['Operacion'];
         }
-        if(isset($_POST["Resultado"])){
+        if(isset($_POST["Resultado"]) && is_numeric($_SESSION['Numeros'])){
             $_SESSION['valor2'] = $_SESSION['Numeros'];
             $_SESSION['Numeros'] = '';
             $num1 = isset($_SESSION['valor1']) ? $_SESSION['valor1'] : '0';
@@ -41,7 +41,14 @@
                 default => $num1,
             };
         }
-        if (isset($_POST["N/P"])) {
+        if (isset($_POST["point"]) && is_numeric($_SESSION['Numeros'])) {
+            if (strpos($_SESSION['Numeros'], '.') === false) {
+                $_SESSION['Numeros'] .= ".";
+            } else {
+                $_SESSION['Numeros'] = rtrim($_SESSION['Numeros'], '.');
+            }
+        }
+        if (isset($_POST["N/P"]) && is_numeric($_SESSION['Numeros'])) {
             if (substr($_SESSION['Numeros'], 0, 1) !== '-') {
                 $_SESSION['Numeros'] = '-' . $_SESSION['Numeros'];
             } else {
@@ -131,7 +138,7 @@
             <tr>
                 <td><button class="botonCal" type="submit" name="N/P" value="-/+">  -/+ </button></td>
                 <td><button class="botonCal" type="submit" name="numero" value="0"> 0 </button></td>
-                <td><button class="botonCal" type="submit" name="numero" value="."> . </button></td>
+                <td><button class="botonCal" type="submit" name="point" value="."> . </button></td>
                 <td><button class="botonCal" type="submit" name="Resultado" value="="> = </button></td>
             </tr>
             
