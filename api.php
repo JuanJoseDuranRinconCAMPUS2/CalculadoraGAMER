@@ -23,11 +23,11 @@
             $_SESSION['Operacion'] = $_POST["operacion"];
             $_SESSION['Numeros'] =  $_SESSION['Operacion'];
         }
-        if(isset($_POST["Resultado"]) && is_numeric($_SESSION['Numeros'])){
+        if(isset($_POST["Resultado"]) ){
             $_SESSION['valor2'] = $_SESSION['Numeros'];
             $_SESSION['Numeros'] = '';
             $num1 = isset($_SESSION['valor1']) ? $_SESSION['valor1'] : '0';
-            $num2 = isset($_SESSION['valor2']) ? $_SESSION['valor2'] : '0';
+            $num2 = isset($_SESSION['valor2']) && is_numeric($_SESSION['valor2']) ? $_SESSION['valor2'] : '1';
             $operacion = $_SESSION['Operacion'];
             $_SESSION['Numeros'] = match($operacion) {
                 "+" =>  strval($num1 + $num2),
