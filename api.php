@@ -1,6 +1,6 @@
 <?php
+    declare(strict_types=1);
     session_start();
-
     $seccionVariables = ['Numeros', 'valor1', 'valor2', 'Operacion'];
     foreach ($seccionVariables as $valor) {
         if (!isset($_SESSION[$valor])) {
@@ -16,6 +16,9 @@
             $_SESSION['Numeros'] .= $numero;
             if (substr($_SESSION['Numeros'], 0, 1) == $_SESSION['Operacion']) {
                 $_SESSION['Numeros'] = substr($_SESSION['Numeros'], 1);
+            }
+            if (!is_numeric($_SESSION['Numeros'])) {
+                $_SESSION['Numeros'] = '';
             }
         }
         if (isset($_POST["operacion"]) && is_numeric($_SESSION['Numeros'])) {
@@ -36,7 +39,7 @@
                 "/" =>  strval($num2 == "0" ? "No se puede dividir entre cero" : $num1 / $num2),
                 "1/x" =>  strval($num1 == "0" ? "No se puede dividir entre cero" : "1" / $num1),
                 "x^2" =>  strval($num1 ** "2"),
-                "√x" =>  strval(sqrt($num1)),
+                "√x" =>  strval($num1 == "0" ? "0" : sqrt($num1)),
                 "%" =>  strval(sqrt($num2 == "0" ? "No se puede dividir entre cero" : $num1 % $num2)),
                 default => $num1,
             };
