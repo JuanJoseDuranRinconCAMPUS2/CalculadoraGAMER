@@ -34,4 +34,8 @@ Este proyecto está bajo la Licencia [MIT](https://chat.openai.com/c/LICENSE). S
 
 ------
 
+<<<<<<< HEAD
 ¡Esperamos que disfrutes utilizando esta calculadora funcional con HTML y PHP puro! Si tienes alguna pregunta o comentario, no dudes en comunicarte conmigo. ¡Gracias por utilizar nuestro proyecto!
+=======
+¡Esperamos que disfrutes utilizando esta calculadora funcional con HTML y PHP puro! Si tienes alguna pregunta o comentario, no dudes en comunicarte conmigo. ¡Gracias por utilizar nuestro proyecto!
+>>>>>>> 50044dff28fc70043fb8f0b41f0e50d7fb54c4fd
