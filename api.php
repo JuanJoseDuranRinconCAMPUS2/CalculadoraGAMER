@@ -1,5 +1,4 @@
 <?php
-    declare(strict_types=1);
     session_start();
     $seccionVariables = ['Numeros', 'valor1', 'valor2', 'Operacion'];
     foreach ($seccionVariables as $valor) {
